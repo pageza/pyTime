@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block title %}Time Tracker{% endblock %}
+{% block body %}
+{% load static %}
+<form action="/dashboard" method="post">
+    {%csrf_token%}
+    {{LogInForm.as_p}}
+    <input type="submit" name="" value="Log In">
+</form>
+
+{% endblock %}

@@ -13,9 +13,30 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
+from apps.timeClock.models import User as U, Job, Location, Clock_in, Clock_out, Company_notices
+
+class UAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(U, UAdmin)
+class JobAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Job, JobAdmin)
+class LocationAdmin(admin.ModelAdmin):
+    list_display = ['street', 'city']
+admin.site.register(Location, LocationAdmin)
+class Clock_inAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Clock_in, Clock_inAdmin)
+class Clock_outAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Clock_out, Clock_outAdmin)
+class Company_noticesAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Company_notices, Company_noticesAdmin)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^', include('apps.timeClock.urls'))
 ]
